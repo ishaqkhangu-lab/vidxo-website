@@ -6,16 +6,18 @@
 <title>Vidxo — AI Video Production That Makes Brands Impossible To Ignore</title>
 <meta name="description" content="Vidxo crafts cinematic AI commercials, UGC ads, product videos and explainers for startups and brands in the US and UK.">
 
-<!-- Fonts -->
+<!-- Fonts (preconnect + swap so text never blocks render) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<!-- Icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<!-- Icons: trimmed subset load is not offered by cdnjs, so we defer the full stylesheet -->
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
 
-<!-- Swiper -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css">
+<!-- Swiper CSS deferred the same way -->
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css"></noscript>
 
 <link rel="stylesheet" href="style.css">
 </head>
@@ -162,17 +164,6 @@
   <div class="scroll-cue"><span></span>Scroll to explore</div>
 </section>
 
-<!-- ============ TRUSTED BY ============ -->
-<section class="trusted">
-  <p class="trusted-label">Trusted by Businesses Worldwide</p>
-  <div class="trusted-track-wrap">
-    <div class="trusted-track">
-      <span>NORTHWIND</span><span>LUMEN&nbsp;CO</span><span>ORBITAL</span><span>STRATA</span><span>FERNWAY</span><span>HAVENLY</span><span>PIXELROOT</span><span>MERIDIAN</span>
-      <span>NORTHWIND</span><span>LUMEN&nbsp;CO</span><span>ORBITAL</span><span>STRATA</span><span>FERNWAY</span><span>HAVENLY</span><span>PIXELROOT</span><span>MERIDIAN</span>
-    </div>
-  </div>
-</section>
-
 <!-- ============ SERVICES ============ -->
 <section class="section" id="services">
   <div class="container">
@@ -243,8 +234,6 @@
 
     <div class="portfolio-filters" id="portfolioFilters">
       <button class="pf-chip active" data-filter="all">All</button>
-      <button class="pf-chip" data-filter="Luxury Commercial">Luxury</button>
-      <button class="pf-chip" data-filter="Fashion Brand">Fashion</button>
       <button class="pf-chip" data-filter="SaaS Explainer">SaaS</button>
       <button class="pf-chip" data-filter="Automobile">Automotive</button>
       <button class="pf-chip" data-filter="Real Estate">Real Estate</button>
@@ -261,7 +250,9 @@
   <div class="modal-content">
     <button class="modal-close" id="modalClose"><i class="fa-solid fa-xmark"></i></button>
     <div class="modal-video-wrap">
-      <video id="modalVideo" controls playsinline></video>
+      <iframe id="modalVideo" src="" title="Vidxo project video" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
     </div>
     <div class="modal-info">
       <span class="modal-category" id="modalCategory"></span>
@@ -270,27 +261,6 @@
     </div>
   </div>
 </div>
-
-<!-- ============ WHY CHOOSE VIDXO ============ -->
-<section class="section" id="why">
-  <div class="container">
-    <div class="section-head" data-reveal>
-      <div class="eyebrow"><span class="eyebrow-dot"></span>WHY VIDXO</div>
-      <h2 class="section-title">Premium quality, <span class="text-gradient">without the premium timeline</span></h2>
-    </div>
-
-    <div class="features-grid">
-      <div class="feature-card" data-reveal><i class="fa-solid fa-film"></i><h4>4K Cinematic Quality</h4><p>Every frame graded and rendered to broadcast standard.</p></div>
-      <div class="feature-card" data-reveal><i class="fa-solid fa-brain"></i><h4>Ultra Realistic AI</h4><p>Latest-generation models tuned for photoreal motion.</p></div>
-      <div class="feature-card" data-reveal><i class="fa-solid fa-bolt"></i><h4>Fast Delivery</h4><p>Full productions turned around in days, not months.</p></div>
-      <div class="feature-card" data-reveal><i class="fa-solid fa-file-shield"></i><h4>Commercial License</h4><p>Full usage rights, cleared for any platform or market.</p></div>
-      <div class="feature-card" data-reveal><i class="fa-solid fa-infinity"></i><h4>Unlimited Creativity</h4><p>No physical sets or limits — if you can imagine it, we build it.</p></div>
-      <div class="feature-card" data-reveal><i class="fa-solid fa-scissors"></i><h4>Professional Editing</h4><p>Hands-on post from editors who obsess over pacing.</p></div>
-      <div class="feature-card" data-reveal><i class="fa-solid fa-shapes"></i><h4>Premium Motion Graphics</h4><p>Custom type, transitions and overlays, never templated.</p></div>
-      <div class="feature-card" data-reveal><i class="fa-solid fa-earth-americas"></i><h4>Global Service</h4><p>Remote-first delivery for clients across the US and UK.</p></div>
-    </div>
-  </div>
-</section>
 
 <!-- ============ PROCESS ============ -->
 <section class="section section-dark" id="process">
@@ -415,52 +385,55 @@
   <div class="container">
     <div class="section-head" data-reveal>
       <div class="eyebrow"><span class="eyebrow-dot"></span>PRICING</div>
-      <h2 class="section-title">Investment built <span class="text-gradient">around your goals</span></h2>
-      <p class="section-sub">Every project is scoped individually. These tiers are a starting point for the conversation.</p>
+      <h2 class="section-title">Simple pricing, <span class="text-gradient">by video length</span></h2>
+      <p class="section-sub">Pick the length that fits your platform. Discounts available for long-term collaboration.</p>
     </div>
 
     <div class="pricing-grid">
       <div class="price-card" data-reveal>
-        <h3>Starter</h3>
-        <p class="price-desc">For brands testing AI video on a single channel.</p>
-        <div class="price-amount">Starting from <span>$1,500</span></div>
+        <h3>15 Second Video</h3>
+        <p class="price-desc">Perfect for Reels, TikTok and Shorts-first campaigns.</p>
+        <div class="price-amount"><span>$15</span></div>
         <ul class="price-list">
-          <li><i class="fa-solid fa-check"></i>1–2 AI videos / month</li>
+          <li><i class="fa-solid fa-check"></i>1 AI-generated video</li>
           <li><i class="fa-solid fa-check"></i>Script &amp; concept included</li>
-          <li><i class="fa-solid fa-check"></i>Standard delivery</li>
+          <li><i class="fa-solid fa-check"></i>AI voiceover included</li>
           <li><i class="fa-solid fa-check"></i>Commercial license</li>
         </ul>
-        <a href="#contact" class="btn btn-outline">Book a Consultation</a>
+        <a href="#contact" class="btn btn-outline">Get in Touch</a>
       </div>
 
       <div class="price-card price-featured" data-reveal>
         <span class="price-badge">Most Popular</span>
-        <h3>Professional</h3>
-        <p class="price-desc">For growing teams running video across multiple channels.</p>
-        <div class="price-amount">Custom Quote</div>
+        <h3>30 Second Video</h3>
+        <p class="price-desc">The standard length for social and paid ad campaigns.</p>
+        <div class="price-amount"><span>$50</span></div>
         <ul class="price-list">
-          <li><i class="fa-solid fa-check"></i>4–8 AI videos / month</li>
-          <li><i class="fa-solid fa-check"></i>UGC ads &amp; social variants</li>
+          <li><i class="fa-solid fa-check"></i>1 AI-generated video</li>
+          <li><i class="fa-solid fa-check"></i>Script &amp; concept included</li>
+          <li><i class="fa-solid fa-check"></i>AI voiceover included</li>
           <li><i class="fa-solid fa-check"></i>Priority delivery</li>
-          <li><i class="fa-solid fa-check"></i>Dedicated producer</li>
           <li><i class="fa-solid fa-check"></i>Commercial license</li>
         </ul>
-        <a href="#contact" class="btn btn-primary">Book a Consultation</a>
+        <a href="#contact" class="btn btn-primary">Get in Touch</a>
       </div>
 
       <div class="price-card" data-reveal>
-        <h3>Enterprise</h3>
-        <p class="price-desc">For agencies and brands needing an ongoing production partner.</p>
-        <div class="price-amount">Custom Quote</div>
+        <h3>1 Minute Video</h3>
+        <p class="price-desc">Ideal for explainers, product stories and longer-form ads.</p>
+        <div class="price-amount"><span>$90</span></div>
         <ul class="price-list">
-          <li><i class="fa-solid fa-check"></i>Unlimited video volume</li>
-          <li><i class="fa-solid fa-check"></i>Full-funnel campaign support</li>
-          <li><i class="fa-solid fa-check"></i>24-hour turnaround options</li>
-          <li><i class="fa-solid fa-check"></i>White-label &amp; agency terms</li>
+          <li><i class="fa-solid fa-check"></i>1 AI-generated video</li>
+          <li><i class="fa-solid fa-check"></i>Script &amp; concept included</li>
+          <li><i class="fa-solid fa-check"></i>AI voiceover included</li>
+          <li><i class="fa-solid fa-check"></i>Priority delivery</li>
+          <li><i class="fa-solid fa-check"></i>Commercial license</li>
         </ul>
-        <a href="#contact" class="btn btn-outline">Book a Consultation</a>
+        <a href="#contact" class="btn btn-outline">Get in Touch</a>
       </div>
     </div>
+
+    <p class="pricing-note" data-reveal><i class="fa-solid fa-tag"></i> Discounts available for long-term collaboration — get in touch to discuss a package.</p>
   </div>
 </section>
 
@@ -524,23 +497,11 @@
     <div class="contact-grid">
       <div class="contact-card" data-reveal>
         <h3>Get in touch</h3>
-        <a class="contact-row" href="mailto:hello@vidxo.xyz">
-          <i class="fa-solid fa-envelope"></i><span>hello@vidxo.xyz</span>
+        <a class="contact-row" href="mailto:ishaqkhangu@gmail.com">
+          <i class="fa-solid fa-envelope"></i><span>ishaqkhangu@gmail.com</span>
         </a>
-        <a class="contact-row" href="#" target="_blank" rel="noopener">
-          <i class="fa-brands fa-whatsapp"></i><span>WhatsApp</span>
-        </a>
-        <a class="contact-row" href="#" target="_blank" rel="noopener">
-          <i class="fa-brands fa-linkedin"></i><span>LinkedIn</span>
-        </a>
-        <a class="contact-row" href="#" target="_blank" rel="noopener">
-          <i class="fa-brands fa-instagram"></i><span>Instagram</span>
-        </a>
-        <a class="contact-row" href="#" target="_blank" rel="noopener">
-          <i class="fa-brands fa-fiverr"></i><span>Fiverr</span>
-        </a>
-        <a class="contact-row" href="#" target="_blank" rel="noopener">
-          <i class="fa-brands fa-youtube"></i><span>YouTube</span>
+        <a class="contact-row" href="https://wa.me/923460168487" target="_blank" rel="noopener">
+          <i class="fa-brands fa-whatsapp"></i><span>+92 346 0168487</span>
         </a>
 
         <div class="map-placeholder">
@@ -549,39 +510,30 @@
         </div>
       </div>
 
-      <form class="contact-form" id="contactForm" data-reveal>
-        <div class="form-row">
-          <div class="form-field">
-            <label for="fName">Name</label>
-            <input type="text" id="fName" name="name" required placeholder="Jane Doe">
-          </div>
-          <div class="form-field">
-            <label for="fEmail">Email</label>
-            <input type="email" id="fEmail" name="email" required placeholder="jane@company.com">
-          </div>
+      <!--
+        FORM SETUP (do this once):
+        1. Go to https://formspree.io and create a free account.
+        2. Create a new form, and set its notification email to: ishaqkhangu@gmail.com
+        3. Copy the form endpoint it gives you (looks like https://formspree.io/f/xxxxxxxx)
+        4. Replace YOUR_FORMSPREE_ID below in the action="" attribute with that ID.
+        Every submission will then land directly in this Gmail inbox — no backend needed.
+      -->
+      <form class="contact-form" id="contactForm" data-reveal
+            action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+        <div class="form-field">
+          <label for="fEmail">Your Email</label>
+          <input type="email" id="fEmail" name="email" required placeholder="you@company.com">
         </div>
-        <div class="form-row">
-          <div class="form-field">
-            <label for="fCompany">Company</label>
-            <input type="text" id="fCompany" name="company" placeholder="Company name">
-          </div>
-          <div class="form-field">
-            <label for="fBudget">Budget</label>
-            <select id="fBudget" name="budget">
-              <option value="">Select a range</option>
-              <option>Under $1,500</option>
-              <option>$1,500 – $5,000</option>
-              <option>$5,000 – $15,000</option>
-              <option>$15,000+</option>
-            </select>
-          </div>
+        <div class="form-field">
+          <label for="fWhatsapp">Your WhatsApp Number</label>
+          <input type="text" id="fWhatsapp" name="whatsapp" placeholder="+1 234 567 8900">
         </div>
         <div class="form-field">
           <label for="fDetails">Project Details</label>
-          <textarea id="fDetails" name="details" rows="4" required placeholder="Tell us about your brand and what you'd like to create..."></textarea>
+          <textarea id="fDetails" name="details" rows="4" required placeholder="Tell us about your project..."></textarea>
         </div>
         <button type="submit" class="btn btn-primary btn-lg" style="width:100%;justify-content:center;">
-          <span>Send Project Details</span>
+          <span>Send Message</span>
           <i class="fa-solid fa-paper-plane"></i>
         </button>
         <p class="form-note" id="formNote"></p>
@@ -614,10 +566,8 @@
     </nav>
 
     <div class="footer-social">
-      <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-      <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-      <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-      <a href="#" aria-label="Fiverr"><i class="fa-brands fa-fiverr"></i></a>
+      <a href="mailto:ishaqkhangu@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+      <a href="https://wa.me/923460168487" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
     </div>
   </div>
   <div class="container footer-bottom">
@@ -628,10 +578,8 @@
 
 <div class="toast" id="toast"></div>
 
-<!-- Scripts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script>
-<script src="script.js"></script>
+<!-- Scripts (deferred so they never block first paint) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js" defer></script>
+<script src="script.js" defer></script>
 </body>
 </html>

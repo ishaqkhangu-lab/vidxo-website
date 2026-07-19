@@ -126,7 +126,7 @@
       h = canvas.height = hero.offsetHeight;
     }
     function initParticles() {
-      const count = window.innerWidth < 700 ? 35 : 70;
+      const count = window.innerWidth < 700 ? 20 : 40;
       particles = Array.from({ length: count }, () => ({
         x: Math.random() * w,
         y: Math.random() * h,
@@ -171,21 +171,22 @@
   /* ---------------------------------------------
      Portfolio data + render + filter + modal
   --------------------------------------------- */
-  const PLACEHOLDER_VIDEO = 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4';
-
+  /* ==========================================================
+     PORTFOLIO VIDEOS — how to add your own:
+     1. Upload your video to YouTube (Public or Unlisted both work).
+     2. Copy the video ID from the URL — the part after "v=".
+        e.g. https://www.youtube.com/watch?v=dQw4w9WgXcQ  -> ID is "dQw4w9WgXcQ"
+     3. Add a new object below with that youtubeId, a title, category and duration.
+     4. The thumbnail shown on the card is pulled automatically from YouTube
+        (no need to upload a separate image).
+  ========================================================== */
   const portfolioItems = [
-    { title: 'Aurora Timepiece Launch', category: 'Luxury Commercial', duration: '0:45', grad: 'linear-gradient(135deg,#3B82F6,#8B5CF6)' },
-    { title: 'Saffron Table Reel', category: 'Restaurant Advertisement', duration: '0:30', grad: 'linear-gradient(135deg,#f59e0b,#ef4444)' },
-    { title: 'Maison Noir SS26', category: 'Fashion Brand', duration: '0:38', grad: 'linear-gradient(135deg,#ec4899,#8B5CF6)' },
-    { title: 'Haven Residences Tour', category: 'Real Estate', duration: '1:10', grad: 'linear-gradient(135deg,#10b981,#3B82F6)' },
-    { title: 'Vantage EV Reveal', category: 'Automobile', duration: '0:52', grad: 'linear-gradient(135deg,#0ea5e9,#6366f1)' },
-    { title: 'Orbital Onboarding Walkthrough', category: 'SaaS Explainer', duration: '1:24', grad: 'linear-gradient(135deg,#8B5CF6,#3B82F6)' },
-    { title: 'Ironclad Fitness Launch', category: 'Fitness Brand', duration: '0:40', grad: 'linear-gradient(135deg,#f97316,#ef4444)' },
-    { title: 'Meridian Clinic Story', category: 'Healthcare', duration: '0:58', grad: 'linear-gradient(135deg,#22d3ee,#3B82F6)' },
-    { title: 'Nexora Platform Film', category: 'Technology', duration: '1:05', grad: 'linear-gradient(135deg,#3B82F6,#1e40af)' },
-    { title: 'Stratus Capital Brand Film', category: 'Finance', duration: '0:48', grad: 'linear-gradient(135deg,#64748b,#8B5CF6)' },
-    { title: 'Golden Hour Ad Set', category: 'Luxury Commercial', duration: '0:35', grad: 'linear-gradient(135deg,#eab308,#f97316)' },
-    { title: 'Pulse SaaS Explainer', category: 'SaaS Explainer', duration: '1:15', grad: 'linear-gradient(135deg,#6366f1,#8B5CF6)' }
+    { title: 'Haven Residences Tour', category: 'Real Estate', duration: '1:10', youtubeId: 'dQw4w9WgXcQ' },
+    { title: 'Vantage EV Reveal', category: 'Automobile', duration: '0:52', youtubeId: 'dQw4w9WgXcQ' },
+    { title: 'Orbital Onboarding Walkthrough', category: 'SaaS Explainer', duration: '1:24', youtubeId: 'dQw4w9WgXcQ' },
+    { title: 'Nexora Platform Film', category: 'Technology', duration: '1:05', youtubeId: 'dQw4w9WgXcQ' },
+    { title: 'Pulse SaaS Explainer', category: 'SaaS Explainer', duration: '1:15', youtubeId: 'dQw4w9WgXcQ' },
+    { title: 'Meridian Clinic Story', category: 'Technology', duration: '0:58', youtubeId: 'dQw4w9WgXcQ' }
   ];
 
   const portfolioGrid = document.getElementById('portfolioGrid');
@@ -200,7 +201,7 @@
         card.className = 'p-card';
         card.setAttribute('data-reveal', '');
         card.innerHTML = `
-          <div class="p-thumb" style="position:absolute;inset:0;background:${item.grad}"></div>
+          <img class="p-thumb" loading="lazy" src="https://i.ytimg.com/vi/${item.youtubeId}/hqdefault.jpg" alt="${item.title}">
           <div class="p-overlay"></div>
           <div class="p-play"><i class="fa-solid fa-play"></i></div>
           <div class="p-content">
@@ -235,15 +236,13 @@
     modalTitle.textContent = item.title;
     modalCategory.textContent = item.category;
     modalDuration.textContent = 'Duration · ' + item.duration;
-    modalVideo.src = PLACEHOLDER_VIDEO;
+    modalVideo.src = `https://www.youtube.com/embed/${item.youtubeId}?autoplay=1&rel=0`;
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
   function closeModal() {
     modal.classList.remove('open');
-    modalVideo.pause();
-    modalVideo.removeAttribute('src');
-    modalVideo.load();
+    modalVideo.src = ''; // stops playback
     document.body.style.overflow = '';
   }
   document.getElementById('modalClose').addEventListener('click', closeModal);
@@ -331,20 +330,32 @@
   const formNote = document.getElementById('formNote');
   const toast = document.getElementById('toast');
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    formNote.textContent = "Thanks — we'll be in touch within 24 hours.";
-    toast.innerHTML = '<i class="fa-solid fa-circle-check"></i> Message sent successfully';
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 3200);
-    form.reset();
-  });
+    const submitBtn = form.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    formNote.textContent = 'Sending…';
 
-  /* ---------------------------------------------
-     GSAP ScrollTrigger refresh (optional smooth extras)
-  --------------------------------------------- */
-  if (window.gsap && window.ScrollTrigger) {
-    gsap.registerPlugin(ScrollTrigger);
-  }
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        formNote.textContent = "Thanks — we'll be in touch within 24 hours.";
+        toast.innerHTML = '<i class="fa-solid fa-circle-check"></i> Message sent successfully';
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 3200);
+        form.reset();
+      } else {
+        formNote.textContent = "Something went wrong — please email us directly at ishaqkhangu@gmail.com.";
+      }
+    } catch (err) {
+      formNote.textContent = "Something went wrong — please email us directly at ishaqkhangu@gmail.com.";
+    } finally {
+      submitBtn.disabled = false;
+    }
+  });
 
 })();

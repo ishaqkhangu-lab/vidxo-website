@@ -427,25 +427,6 @@ h1,h2,h3,h4{ font-family: var(--font-display); font-weight:600; letter-spacing:-
 }
 
 /* ===================================================
-   TRUSTED BY
-=================================================== */
-.trusted{ padding: 50px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
-.trusted-label{
-  text-align:center; font-family: var(--font-mono); font-size:12px; letter-spacing:.14em;
-  color: var(--text-2); margin-bottom: 28px; text-transform:uppercase;
-}
-.trusted-track-wrap{ overflow:hidden; mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent); }
-.trusted-track{
-  display:flex; gap: 64px; width:max-content;
-  animation: trusted-scroll 26s linear infinite;
-}
-.trusted-track span{
-  font-family: var(--font-display); font-weight:600; font-size:20px;
-  color: rgba(255,255,255,.28); letter-spacing:.04em; white-space:nowrap;
-}
-@keyframes trusted-scroll{ from{ transform: translateX(0); } to{ transform: translateX(-50%); } }
-
-/* ===================================================
    Sections general
 =================================================== */
 .section{ padding: 120px 0; position:relative; }
@@ -514,7 +495,8 @@ h1,h2,h3,h4{ font-family: var(--font-display); font-weight:600; letter-spacing:-
 }
 .p-card:hover{ transform: translateY(-6px); }
 .p-thumb{
-  position:absolute; inset:0;
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit: cover;
   transition: transform .6s var(--ease);
 }
 .p-card:hover .p-thumb{ transform: scale(1.06); }
@@ -564,7 +546,7 @@ h1,h2,h3,h4{ font-family: var(--font-display); font-weight:600; letter-spacing:-
 }
 .modal.open .modal-content{ transform: scale(1) translateY(0); }
 .modal-video-wrap{ background:#000; aspect-ratio:16/9; }
-.modal-video-wrap video{ width:100%; height:100%; }
+.modal-video-wrap iframe{ width:100%; height:100%; border:0; display:block; }
 .modal-info{ padding: 22px 26px; }
 .modal-category{ font-family: var(--font-mono); font-size:11px; color: var(--accent); letter-spacing:.08em; }
 .modal-info h3{ font-size:22px; margin: 8px 0 4px; }
@@ -577,25 +559,6 @@ h1,h2,h3,h4{ font-family: var(--font-display); font-weight:600; letter-spacing:-
   transition: background .3s;
 }
 .modal-close:hover{ background: rgba(0,0,0,.75); }
-
-/* ===================================================
-   FEATURES (Why choose)
-=================================================== */
-.features-grid{
-  display:grid; grid-template-columns: repeat(4,1fr); gap:18px;
-}
-.feature-card{
-  padding: 26px 22px; border-radius: var(--radius);
-  background: var(--glass); border:1px solid var(--border);
-  transition: transform .4s var(--ease), border-color .4s var(--ease);
-}
-.feature-card:hover{ transform: translateY(-4px); border-color: var(--border-strong); }
-.feature-card i{ font-size:20px; color: var(--accent); margin-bottom:16px; display:block; }
-.feature-card h4{ font-size:16px; margin-bottom:8px; }
-.feature-card p{ font-size:13.5px; color: var(--text-2); }
-
-@media (max-width: 900px){ .features-grid{ grid-template-columns: repeat(2,1fr); } }
-@media (max-width: 560px){ .features-grid{ grid-template-columns: 1fr; } }
 
 /* ===================================================
    PROCESS TIMELINE
@@ -697,6 +660,12 @@ h1,h2,h3,h4{ font-family: var(--font-display); font-weight:600; letter-spacing:-
 .price-list i{ color: var(--accent); font-size:12px; }
 
 @media (max-width: 900px){ .pricing-grid{ grid-template-columns:1fr; } }
+
+.pricing-note{
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  margin-top: 34px; text-align:center; color: var(--text-2); font-size:14.5px;
+}
+.pricing-note i{ color: var(--accent); }
 
 /* ===================================================
    FAQ ACCORDION

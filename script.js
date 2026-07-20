@@ -168,74 +168,56 @@
   }, { threshold: 0.15 });
   revealEls.forEach(el => revealObserver.observe(el));
 
-  /* ---------------------------------------------
-     Portfolio data + render + filter + modal
-  --------------------------------------------- */
   /* ==========================================================
-     PORTFOLIO VIDEOS — how to add your own:
+     PORTFOLIO VIDEOS — how to add more of your own:
      1. Upload your video to YouTube (Public or Unlisted both work).
-     2. Copy the video ID from the URL — the part after "v=".
-        e.g. https://www.youtube.com/watch?v=dQw4w9WgXcQ  -> ID is "dQw4w9WgXcQ"
-     3. Add a new object below with that youtubeId, a title, category and duration.
-     4. The thumbnail shown on the card is pulled automatically from YouTube
-        (no need to upload a separate image).
+     2. Copy the video ID from the URL:
+        https://youtu.be/e-1AQDQJOSs  ->  ID is "e-1AQDQJOSs"
+        https://www.youtube.com/watch?v=e-1AQDQJOSs -> same ID, after "v="
+     3. Add a new { title: '...', youtubeId: '...' } object to the list below.
+        The thumbnail is pulled automatically from YouTube — no image upload needed.
   ========================================================== */
   const portfolioItems = [
-    { title: 'Haven Residences Tour', category: 'Real Estate', duration: '1:10', youtubeId: 'dQw4w9WgXcQ' },
-    { title: 'Vantage EV Reveal', category: 'Automobile', duration: '0:52', youtubeId: 'dQw4w9WgXcQ' },
-    { title: 'Orbital Onboarding Walkthrough', category: 'SaaS Explainer', duration: '1:24', youtubeId: 'dQw4w9WgXcQ' },
-    { title: 'Nexora Platform Film', category: 'Technology', duration: '1:05', youtubeId: 'dQw4w9WgXcQ' },
-    { title: 'Pulse SaaS Explainer', category: 'SaaS Explainer', duration: '1:15', youtubeId: 'dQw4w9WgXcQ' },
-    { title: 'Meridian Clinic Story', category: 'Technology', duration: '0:58', youtubeId: 'dQw4w9WgXcQ' }
+    { title: 'T2F AI Automation', youtubeId: 'e-1AQDQJOSs' },
+    { title: 'Sanative Vibez', youtubeId: 'oX7kshYCRjA' },
+    { title: 'AI is Revolutionizing Hygiene', youtubeId: 'tUljDfxcIXU' },
+    { title: 'HRC Directory', youtubeId: 'UA3uAYtBFuc' },
+    { title: 'GPS Tracking', youtubeId: 'Auz08RudWYI' },
+    { title: 'Answering Genius', youtubeId: '64xZPUUdlIA' }
   ];
 
   const portfolioGrid = document.getElementById('portfolioGrid');
-  const filterBar = document.getElementById('portfolioFilters');
 
-  function renderPortfolio(filter) {
+  function renderPortfolio() {
     portfolioGrid.innerHTML = '';
-    portfolioItems
-      .filter(item => filter === 'all' || item.category === filter)
-      .forEach((item, idx) => {
-        const card = document.createElement('div');
-        card.className = 'p-card';
-        card.setAttribute('data-reveal', '');
-        card.innerHTML = `
-          <img class="p-thumb" loading="lazy" src="https://i.ytimg.com/vi/${item.youtubeId}/hqdefault.jpg" alt="${item.title}">
-          <div class="p-overlay"></div>
-          <div class="p-play"><i class="fa-solid fa-play"></i></div>
-          <div class="p-content">
-            <span class="p-category">${item.category}</span>
-            <div class="p-title">${item.title}</div>
-            <span class="p-duration">${item.duration}</span>
-          </div>
-        `;
-        card.addEventListener('click', () => openModal(item));
-        portfolioGrid.appendChild(card);
-        revealObserver.observe(card);
-        setTimeout(() => card.classList.add('in-view'), 20 + idx * 40);
-      });
+    portfolioItems.forEach((item, idx) => {
+      const card = document.createElement('div');
+      card.className = 'p-card';
+      card.setAttribute('data-reveal', '');
+      card.innerHTML = `
+        <img class="p-thumb" loading="lazy" src="https://i.ytimg.com/vi/${item.youtubeId}/hqdefault.jpg" alt="${item.title}">
+        <div class="p-overlay"></div>
+        <div class="p-play"><i class="fa-brands fa-youtube"></i></div>
+        <div class="p-content">
+          <div class="p-title">${item.title}</div>
+        </div>
+      `;
+      card.addEventListener('click', () => openModal(item));
+      portfolioGrid.appendChild(card);
+      revealObserver.observe(card);
+      setTimeout(() => card.classList.add('in-view'), 20 + idx * 40);
+    });
   }
-  renderPortfolio('all');
-
-  filterBar.addEventListener('click', (e) => {
-    const chip = e.target.closest('.pf-chip');
-    if (!chip) return;
-    filterBar.querySelectorAll('.pf-chip').forEach(c => c.classList.remove('active'));
-    chip.classList.add('active');
-    renderPortfolio(chip.dataset.filter);
-  });
+  renderPortfolio();
 
   const modal = document.getElementById('videoModal');
   const modalVideo = document.getElementById('modalVideo');
   const modalTitle = document.getElementById('modalTitle');
-  const modalCategory = document.getElementById('modalCategory');
   const modalDuration = document.getElementById('modalDuration');
 
   function openModal(item) {
     modalTitle.textContent = item.title;
-    modalCategory.textContent = item.category;
-    modalDuration.textContent = 'Duration · ' + item.duration;
+    modalDuration.textContent = 'Watch on YouTube';
     modalVideo.src = `https://www.youtube.com/embed/${item.youtubeId}?autoplay=1&rel=0`;
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';

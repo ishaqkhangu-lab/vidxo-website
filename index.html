@@ -56,9 +56,14 @@
       <a href="#contact" class="nav-link">Contact</a>
     </nav>
 
-    <a href="#contact" class="btn btn-primary btn-sm nav-cta">
-      <span>Get Free Consultation</span>
-    </a>
+    <div class="nav-cta">
+      <a href="mailto:ishaqkhangu@gmail.com" class="nav-icon-btn" aria-label="Email us">
+        <i class="fa-solid fa-envelope"></i>
+      </a>
+      <a href="https://wa.me/923460168487" target="_blank" rel="noopener" class="nav-icon-btn" aria-label="WhatsApp us">
+        <i class="fa-brands fa-whatsapp"></i>
+      </a>
+    </div>
 
     <button class="hamburger" id="hamburger" aria-label="Open menu">
       <span></span><span></span><span></span>
@@ -74,7 +79,10 @@
     <a href="#pricing" class="mobile-link">Pricing</a>
     <a href="#faq" class="mobile-link">FAQ</a>
     <a href="#contact" class="mobile-link">Contact</a>
-    <a href="#contact" class="btn btn-primary" style="margin-top:12px;">Get Free Consultation</a>
+    <div class="mobile-cta-row">
+      <a href="mailto:ishaqkhangu@gmail.com" class="nav-icon-btn" aria-label="Email us"><i class="fa-solid fa-envelope"></i></a>
+      <a href="https://wa.me/923460168487" target="_blank" rel="noopener" class="nav-icon-btn" aria-label="WhatsApp us"><i class="fa-brands fa-whatsapp"></i></a>
+    </div>
   </div>
 </header>
 
@@ -104,16 +112,6 @@
           <i class="fa-solid fa-play"></i>
           <span>View Portfolio</span>
         </a>
-      </div>
-      <div class="hero-meta">
-        <div class="hero-meta-item">
-          <div class="avatars">
-            <span class="avatar" style="background:linear-gradient(135deg,#3B82F6,#8B5CF6)"></span>
-            <span class="avatar" style="background:linear-gradient(135deg,#8B5CF6,#3B82F6)"></span>
-            <span class="avatar" style="background:linear-gradient(135deg,#60a5fa,#a78bfa)"></span>
-          </div>
-          <span>100+ brands produced with Vidxo</span>
-        </div>
       </div>
     </div>
 
@@ -229,15 +227,7 @@
     <div class="section-head" data-reveal>
       <div class="eyebrow"><span class="eyebrow-dot"></span>PORTFOLIO</div>
       <h2 class="section-title">Work that <span class="text-gradient">speaks for itself</span></h2>
-      <p class="section-sub">A selection of AI-produced campaigns across industries. Press play.</p>
-    </div>
-
-    <div class="portfolio-filters" id="portfolioFilters">
-      <button class="pf-chip active" data-filter="all">All</button>
-      <button class="pf-chip" data-filter="SaaS Explainer">SaaS</button>
-      <button class="pf-chip" data-filter="Automobile">Automotive</button>
-      <button class="pf-chip" data-filter="Real Estate">Real Estate</button>
-      <button class="pf-chip" data-filter="Technology">Technology</button>
+      <p class="section-sub">A selection of AI-produced videos. Press play.</p>
     </div>
 
     <div class="portfolio-grid" id="portfolioGrid"></div>
@@ -255,7 +245,6 @@
         allowfullscreen></iframe>
     </div>
     <div class="modal-info">
-      <span class="modal-category" id="modalCategory"></span>
       <h3 id="modalTitle"></h3>
       <span id="modalDuration"></span>
     </div>
@@ -275,8 +264,8 @@
 
       <div class="timeline-step" data-reveal>
         <div class="ts-num">01</div>
-        <h4>Discovery Call</h4>
-        <p>We learn your brand, audience and goals in a focused 20-minute call.</p>
+        <h4>Initial Discussion</h4>
+        <p>We learn your brand, audience and goals over chat or email before we start.</p>
       </div>
       <div class="timeline-step" data-reveal>
         <div class="ts-num">02</div>
@@ -303,10 +292,10 @@
 </section>
 
 <!-- ============ STATS ============ -->
-<section class="stats">
+<section class="stats stats-compact">
   <div class="container stats-grid">
     <div class="stat" data-reveal>
-      <span class="stat-num" data-count="100" data-suffix="+">0</span>
+      <span class="stat-num" data-count="50" data-suffix="+">0</span>
       <span class="stat-label">Projects Completed</span>
     </div>
     <div class="stat" data-reveal>
@@ -393,18 +382,16 @@
       <div class="price-card" data-reveal>
         <h3>15 Second Video</h3>
         <p class="price-desc">Perfect for Reels, TikTok and Shorts-first campaigns.</p>
-        <div class="price-amount"><span>$15</span></div>
+        <div class="price-amount"><span>$30</span></div>
         <ul class="price-list">
           <li><i class="fa-solid fa-check"></i>1 AI-generated video</li>
           <li><i class="fa-solid fa-check"></i>Script &amp; concept included</li>
           <li><i class="fa-solid fa-check"></i>AI voiceover included</li>
-          <li><i class="fa-solid fa-check"></i>Commercial license</li>
         </ul>
         <a href="#contact" class="btn btn-outline">Get in Touch</a>
       </div>
 
-      <div class="price-card price-featured" data-reveal>
-        <span class="price-badge">Most Popular</span>
+      <div class="price-card" data-reveal>
         <h3>30 Second Video</h3>
         <p class="price-desc">The standard length for social and paid ad campaigns.</p>
         <div class="price-amount"><span>$50</span></div>
@@ -413,7 +400,6 @@
           <li><i class="fa-solid fa-check"></i>Script &amp; concept included</li>
           <li><i class="fa-solid fa-check"></i>AI voiceover included</li>
           <li><i class="fa-solid fa-check"></i>Priority delivery</li>
-          <li><i class="fa-solid fa-check"></i>Commercial license</li>
         </ul>
         <a href="#contact" class="btn btn-primary">Get in Touch</a>
       </div>
@@ -427,7 +413,6 @@
           <li><i class="fa-solid fa-check"></i>Script &amp; concept included</li>
           <li><i class="fa-solid fa-check"></i>AI voiceover included</li>
           <li><i class="fa-solid fa-check"></i>Priority delivery</li>
-          <li><i class="fa-solid fa-check"></i>Commercial license</li>
         </ul>
         <a href="#contact" class="btn btn-outline">Get in Touch</a>
       </div>
@@ -503,23 +488,10 @@
         <a class="contact-row" href="https://wa.me/923460168487" target="_blank" rel="noopener">
           <i class="fa-brands fa-whatsapp"></i><span>+92 346 0168487</span>
         </a>
-
-        <div class="map-placeholder">
-          <i class="fa-solid fa-location-dot"></i>
-          <span>Remote-first · Serving clients across the US &amp; UK</span>
-        </div>
       </div>
 
-      <!--
-        FORM SETUP (do this once):
-        1. Go to https://formspree.io and create a free account.
-        2. Create a new form, and set its notification email to: ishaqkhangu@gmail.com
-        3. Copy the form endpoint it gives you (looks like https://formspree.io/f/xxxxxxxx)
-        4. Replace YOUR_FORMSPREE_ID below in the action="" attribute with that ID.
-        Every submission will then land directly in this Gmail inbox — no backend needed.
-      -->
       <form class="contact-form" id="contactForm" data-reveal
-            action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+            action="https://formspree.io/f/xqerbeje" method="POST">
         <div class="form-field">
           <label for="fEmail">Your Email</label>
           <input type="email" id="fEmail" name="email" required placeholder="you@company.com">

@@ -206,7 +206,20 @@ h1,h2,h3,h4{ font-family: var(--font-display); font-weight:600; letter-spacing:-
 .nav-link:hover, .nav-link.active{ color: var(--text); }
 .nav-link:hover::after, .nav-link.active::after{ width:100%; }
 
-.nav-cta{ flex-shrink:0; }
+.nav-cta{ display:flex; align-items:center; gap:10px; flex-shrink:0; }
+.nav-icon-btn{
+  width:40px; height:40px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  background: rgba(255,255,255,.04); border:1px solid var(--border);
+  color: var(--text); font-size:16px;
+  transition: all .3s var(--ease);
+}
+.nav-icon-btn:hover{
+  border-color: var(--accent);
+  background: rgba(59,130,246,.12);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
 
 .hamburger{
   display:none; flex-direction:column; justify-content:center; gap:5px;
@@ -225,6 +238,7 @@ h1,h2,h3,h4{ font-family: var(--font-display); font-weight:600; letter-spacing:-
 }
 .mobile-menu.open{ max-height:500px; padding: 16px 32px 22px; }
 .mobile-link{ padding: 10px 0; color: var(--text-2); font-weight:500; border-bottom: 1px solid var(--border); }
+.mobile-cta-row{ display:flex; gap:12px; margin-top:14px; }
 
 @media (max-width: 900px){
   .nav-links, .nav-cta{ display:none; }
@@ -489,7 +503,7 @@ h1,h2,h3,h4{ font-family: var(--font-display); font-weight:600; letter-spacing:-
 }
 .p-card{
   position:relative; border-radius: var(--radius); overflow:hidden;
-  aspect-ratio: 4/5; cursor:pointer;
+  aspect-ratio: 16/9; cursor:pointer;
   border: 1px solid var(--border);
   transition: transform .5s var(--ease);
 }
@@ -507,11 +521,7 @@ h1,h2,h3,h4{ font-family: var(--font-display); font-weight:600; letter-spacing:-
 .p-content{
   position:absolute; left:0; right:0; bottom:0; padding: 20px;
 }
-.p-category{
-  font-family: var(--font-mono); font-size:11px; letter-spacing:.08em;
-  color: var(--accent); text-transform:uppercase; margin-bottom:6px; display:block;
-}
-.p-title{ font-family: var(--font-display); font-size:19px; font-weight:600; margin-bottom:6px; }
+.p-title{ font-family: var(--font-display); font-size:17px; font-weight:600; margin-bottom:6px; }
 .p-duration{ font-size:12.5px; color: var(--text-2); }
 
 .p-play{
@@ -595,6 +605,10 @@ h1,h2,h3,h4{ font-family: var(--font-display); font-weight:600; letter-spacing:-
    STATS
 =================================================== */
 .stats{ padding: 90px 0; }
+.stats-compact{ padding: 48px 0; }
+.stats-compact .stat-num{ font-size: clamp(26px,3.4vw,36px); }
+.stats-compact .stat-static{ font-size: clamp(22px,3vw,30px); }
+.stats-compact .stat-label{ font-size:12.5px; }
 .stats-grid{
   display:grid; grid-template-columns: repeat(4,1fr); gap: 20px; text-align:center;
 }
